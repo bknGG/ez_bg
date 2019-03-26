@@ -1,1 +1,15 @@
-<h3>Главная страница</h3>
+<% @post.each do |post| %>
+  <div class="card border border-secondary shadow">
+    <div class="card-header text-white bg-dark">
+      <h5><b><%= post.title %></b></h5>
+    </div>
+    <div class="card-body">
+      <p class="card-text"><h6><i><%= post.body %></i></h6></p>
+      <span class="btn btn-light"><%= link_to "Читать >", post_path(post) %></span>
+    </div>
+  </div>
+<br>
+<% end %>
+
+
+

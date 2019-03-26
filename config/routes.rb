@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  root 'posts#index'
+  root 'posts#index', as: 'home'
 
   # Подключение url адреса "site.ru/about"
-  get 'about' => 'pages#about'
+  get 'about' => 'pages#about', as: 'about'
 
   # Индексирование со всеми страницами Posts
-  resources :posts
+  resources :posts do
+  resources :comments
+    end
 end

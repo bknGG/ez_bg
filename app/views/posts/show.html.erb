@@ -1,2 +1,42 @@
-<h1><%= @post.title %></h1>
+<div class="container mt-5 mb-2 ml-5">
+<h3><b><%= @post.title %></b></h3><br>
 <p><%= @post.body %></p>
+<hr>
+<%= link_to "Редактировать", edit_post_path(@post), class: 'btn btn-warning' %>
+<%= link_to "Удалить", post_path(@post), method: :delete, data: {confirm: "Удалить статью?"}, class: 'btn btn-danger' %>
+<hr>
+<br>
+<br>
+  <h4>Комментарии:</h4>
+  <% @post.comments.each do |comment| %>
+  <div class="card w-50 mt-1 shadow">
+    <div class="card-body">
+      <h6 class="card-title"><b><%= comment.username %>:</b></h6>
+      <h6 class="card-text mb-1 text-muted"><i><%= comment.body %></i></h6>
+    </div>
+  </div>
+  <% end %>
+
+
+
+
+  <br>
+
+  <p /><h3>Оставить комментарий:</h3>
+  <%= form_for([@post, @post.comments.build]) do |f| %>
+
+    <p>
+      Имя пользователя<br>
+      <%= f.text_field(:username, {:class => 'form-control'}) %>
+    </p>
+    <p>
+      Ваш комментарий:<br>
+      <%= f.text_area(:body, {:class => 'form-control'}) %>
+    </p>
+
+    <p>
+      <%= f.submit("Оставить коммент!", {:class => 'btn btn-success'}) %>
+    </p>
+    </div>
+
+  <% end %>

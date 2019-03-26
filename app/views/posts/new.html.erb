@@ -1,17 +1,26 @@
-<h2>Добавить новость</h2>
 
+<div class="container mt-5 mb-2 ml-5">
+  <p /><h3>Добавить статью</h3>
 <%= form_for :post, url: posts_path do |f| %>
+
+    <% if @post.errors.any? %>
+      <% @post.errors.full_messages.each do |msg| %>
+          <div class="alert alert-danger"><%= msg %></div>
+      <% end %>
+    <% end %>
+
 <p>
   Название<br>
-  <%= f.text_field :title %>
+  <%= f.text_field(:title, {:class => 'form-control'}) %>
 </p>
   <p>
     Текст статьи<br>
-    <%= f.text_area :body %>
+    <%= f.text_area(:body, {:class => 'form-control'}) %>
   </p>
 
 <p>
-  <%= f.submit %>
+  <%= f.submit({:class => 'btn btn-success'}) %>
 </p>
+    </div>
 
 <% end %>
